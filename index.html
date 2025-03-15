@@ -11,6 +11,8 @@
     <!-- Linking font awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
+    <link rel="stylesheet" href="styles.css">
+    <title>Dashboard</title>
 </head>
 <body>
 
@@ -381,6 +383,66 @@
 
     <div class="modal-form">
         
+        <div class="modal-form-header">
+            <h2>Create Deal</h2>
+        </div>
+        <div class="modal-form-body">
+            <div class="modal-form-section">
+                <h3 class="modal-form-section-title">Deal Information</h3>
+                <div class="modal-form-group">
+                    <label for="deal-name">Deal Name</label>
+                    <input type="text" id="deal-name" class="modal-form-control" required>
+                </div>
+                <div class="modal-form-group">
+                    <label for="owner">Owner</label>
+                    <div class="owner-field">
+                        <button class="owner-button">
+                            <span>Abhiram M Prasad</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-form-group">
+                    <label for="companyName">Company Name</label>
+                    <input type="text" id="companyName" class="modal-form-control">
+                </div>
+                <div class="modal-form-group">
+                    <label for="contactName">Contact Name</label>
+                    <input type="text" id="contactName" class="modal-form-control">
+                </div>
+
+                <div class="modal-form-group dropdown field">
+                    <label for="deal-stage">Deal Stage</label>
+                    <select id="deal-stage" class="modal-form-control custom-select" required>
+                        <option value="" disabled selected>Choose a stage</option>
+                        <option value="Qualification">Qualification</option>
+                        <option value="Needs Analysis">Needs Analysis</option>
+                        <option value="Proposal/Price Quote">Proposal/Price Quote</option>
+                        <option value="Negotiation/Review">Negotiation/Review</option>
+                        <option value="Closed Won">Closed Won</option>
+                        <option value="Closed Lost">Closed Lost</option>
+                    </select>
+                </div>
+                <div class="modal-form-group">
+                    <label for="amount">Amount</label>
+                    <div class="modal-form-input-group">
+                        <span class="modal-form-input-group-prepend">₹</span>
+                        <input type="number" id="amount" class="modal-form-control" required>
+                    </div>
+                </div>
+                <div class="modal-form-group">
+                    <label for="closingDate">Closing Date</label>
+                    <input type="date" id="closingDate" class="modal-form-control" required>
+                </div>
+                <div class="modal-form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" class="modal-form-control" rows="4" placeholder="A few words about this deal"></textarea>
+                </div>
+                <div class="modal-form-footer">
+                    <button class="btn modal-form-cancel" id="cancelBtn">Cancel</button>
+                    <button class="btn modal-form-submit" id="saveBtn">Save</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -391,6 +453,12 @@
 
 
     <!-- Linking Js file -->
+    <script src="script.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    
+    
     <script src="script.js"></script>
 </body>
 
