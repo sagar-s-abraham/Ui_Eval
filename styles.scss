@@ -1,0 +1,177 @@
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+:root {
+  --primary-color: #3b82f6;
+  --inactive-color: #e5e7eb;
+  --text-color: #6b7280;
+  --red-color: #f87171; 
+  --green-color:  #4caf50;  
+}
+
+.description {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  .project-section {
+    .arrow {
+      i {
+        height: 20px;
+        width: 30px;
+      }
+    }
+    .project-name {
+      font-size: large;
+    }
+    .money {
+      font-size: large;
+    }
+  }
+  .contact-name {
+    padding: 20px;
+    display: flex;
+    .crown {
+      padding-right: 10px;
+    }
+  }
+}
+
+.mx-2 {
+  color: var(--text-color);
+}
+
+.pipeline {
+  padding-left: 15px;
+}
+
+.status-timeline {
+  width: 100%;
+  max-width: 100%;
+  padding: 20px;
+}
+
+.progress-container {
+  position: relative;
+  width: 100%;
+}
+
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 30px;
+  width: 100%;
+
+  .progress-line {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: var(--inactive-color); /* Default line color */
+    z-index: 1;
+  }
+
+  .step {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+
+    .circle {
+      background-color: #fff;
+      border: 2px solid var(--inactive-color); /* Default border color */
+      border-radius: 50%;
+      height: 32px;
+      width: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      color: var(--text-color);
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .step-text {
+      margin-top: 8px;
+      color: var(--text-color);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    &.active {
+      .circle {
+        border-color: var(--primary-color);
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .step-text {
+        color: var(--primary-color);
+      }
+    }
+
+    &.closed-lost {
+      .circle {
+        border-color: var(--red-color); /* Red border for closed lost */
+        background-color: var(--red-color); /* Red background for closed lost */
+        color: white;
+      }
+
+      .step-text {
+        color: var(--red-color); /* Red text for closed lost */
+      }
+
+      .progress-line {
+        background-color: var(--red-color); /* Red line for closed lost */
+      }
+    }
+
+    &.closed-won {
+      .circle {
+        border-color: var(--green-color); /* Green border for closed won */
+        background-color: var(--green-color); /* Green background for closed won */
+        color: white;
+      }
+
+      .step-text {
+        color: var(--green-color); /* Green text for closed won */
+      }
+
+      .progress-line {
+        background-color: var(--green-color); /* Green line for closed won */
+      }
+    }
+
+    &.inactive-lost {
+      .circle {
+        border-color: var(--inactive-color); /* Inactive border for closed lost initially */
+        background-color: var(--inactive-color); /* Inactive background for closed lost initially */
+        color: var(--text-color); /* Default text color */
+      }
+
+      .step-text {
+        color: var(--text-color); /* Default text color */
+      }
+    }
+
+    &.inactive-won {
+      .circle {
+        border-color: var(--inactive-color); /* Inactive border for closed won initially */
+        background-color: var(--inactive-color); /* Inactive background for closed won initially */
+        color: var(--text-color); /* Default text color */
+      }
+
+      .step-text {
+        color: var(--text-color); /* Default text color */
+      }
+    }
+  }
+}
+
