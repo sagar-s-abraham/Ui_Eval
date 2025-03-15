@@ -3,17 +3,466 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Deals</title>
+
+    <!-- Linking style.css-->
+     <link rel="stylesheet" href="styles.css">
+
+    <!-- Linking font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <link rel="stylesheet" href="styles.css">
     <title>Dashboard</title>
 </head>
 <body>
-    <header class="top-nav">
 
+    <!-- Top navigation bar -->
+    <header class="top-nav">
+        <div class="left-section">
+            <div class="logo">
+                <i class="fas fa-filter"></i>
+                <span>Bigin</span>
+            </div>
+        
+            <div class="dropdown">
+                <button class="dropdown-btn">All <i class="fas fa-chevron-down"></i></button>
+            </div>
+
+            <div class="search-container">
+                <input type="text" placeholder="Search (ctrl + k)" />
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+        <div class="right-section">
+            <span class="trial-info">12 days left in your Premier trial. <a href="#" class="upgrade-link">Upgrade</a></span>
+            <button class="add-btn"><i class="fas fa-plus"></i></button>
+            <button class="icon-btn"><i class="far fa-clipboard"></i></button>
+            <button class="icon-btn"><i class="far fa-bell"></i></button>
+            <button class="icon-btn"><i class="fas fa-question-circle"></i></button>
+            <button class="icon-btn"><i class="fas fa-cog"></i></button>
+            <div class="user-avatar">
+                <img src="images/profile.jpeg" alt="User Avatar" />
+            </div>
+        </div>
     </header>
+
+    <!-- Main Container Area -->
     <div class="main-container">
-        //Bhagya
+
+        <!-- Left side bar -->
+        <aside class="sidebar">
+            <div class="sidebar-item active">
+                <i class="fas fa-chart-line"></i>
+                <span>Pipelines</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-user"></i>
+                <span>Contacts</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-building"></i>
+                <span>Companies</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-box"></i>
+                <span>Products</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-tasks"></i>
+                <span>Activities</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </div>
+        </aside>
+
+        <!-- Pipeline Content -->
+        <main class="content">
+            <!-- Pipeline Header -->
+            <div class="pipeline-header">
+                <div class="pipeline-title">
+                    <h2>Team Pipelines</h2>
+                    <button class="add-btn"><i class="fas fa-plus"></i></button>
+                </div>
+                <div class="pipeline-list">
+                    <div class="pipeline-item active">
+                        <i class="fas fa-funnel-dollar"></i>
+                        <span>Sales Pipeline</span>
+                    </div>
+                </div>
+                <div class="template-section">
+                    <h3>Clone from a Template</h3>
+                    <div class="template-option">
+                        <i class="fas fa-chevron-right"></i>
+                        <span>For Teams</span>
+                    </div>
+                    <div class="template-option">
+                        <i class="fas fa-chevron-right"></i>
+                        <span>For Industries</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pipeline View -->
+            <div class="pipeline-view">
+                <!-- Pipeline Toolbar -->
+                <div class="pipeline-toolbar">
+                    <div class="filter-section">
+                        <button class="filter-btn"><i class="fas fa-filter"></i></button>
+                        <div class="dropdown">
+                            <button class="dropdown-btn text-color">
+                            All Deals <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="sort-section">
+                        <span>Sort By</span>
+                        <div class="dropdown">
+                            <button class="dropdown-btn text-color">
+                            Created Time <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <button class="view-btn"><i class="fas fa-columns"></i></button>
+                        <button class="view-btn"><i class="fas fa-bars"></i></button>
+                        <div class="dropdown">
+                            <button class="add-deal-btn">
+                            <i class="fas fa-plus"></i> Deal
+                            <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <button class="more-btn">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+            <!-- Pipeline Stages -->
+            <div class="pipeline-stages">
+                <!-- Qualification Stage -->
+                <div class="stage" data-stage="qualification">
+                    <div class="stage-header">
+                        <div class="stage-info">
+                        <h3>Qualification</h3>
+                        <div class="stage-stats">
+                            <span class="stage-amount">₹11,671.00</span>
+                            <span class="stage-count">2 Deals</span>
+                        </div>
+                        </div>
+                        <div class="stage-actions">
+                        <button class="more-btn">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <div class="stage-toggle">
+                            <input
+                            type="checkbox"
+                            id="stage1-toggle"
+                            class="stage-checkbox"
+                            />
+                            <label for="stage1-toggle" class="stage-label"></label>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="stage-deals">
+                        <!-- Deal Card 1 -->
+                        <div class="deal-card" draggable="true" data-deal-id="1">
+                        <div class="deal-title">Shingadi</div>
+                        <div class="deal-owner">Shibu</div>
+                        <div class="deal-details">
+                            <span class="deal-amount">₹6,000.00</span>
+                            <span class="deal-date">Mar 26</span>
+                        </div>
+                        </div>
+                        <!-- Deal Card 2 -->
+                        <div class="deal-card" draggable="true" data-deal-id="2">
+                            <div class="deal-title">Zylker Yearly Subscription</div>
+                            <div class="deal-owner">Ted Watson</div>
+                            <div class="deal-details">
+                                <span class="deal-amount">₹5,671.00</span>
+                                <span class="deal-date">Mar 18</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stage-footer">
+                        <button class="add-deal-btn">
+                        <i class="fas fa-plus"></i> Deal
+                        </button>
+                        <button class="expand-btn">
+                        <i class="fas fa-expand-alt"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Needs Analysis Stage -->
+                <div class="stage" data-stage="needs-analysis">
+                    <div class="stage-header">
+                        <div class="stage-info">
+                        <h3>Needs Analysis</h3>
+                        <div class="stage-stats">
+                            <span class="stage-amount">₹0.00</span>
+                            <span class="stage-count">0 Deal</span>
+                        </div>
+                        </div>
+                        <div class="stage-actions">
+                        <button class="more-btn">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <div class="stage-toggle">
+                            <input
+                            type="checkbox"
+                            id="stage2-toggle"
+                            class="stage-checkbox"
+                            />
+                            <label for="stage2-toggle" class="stage-label"></label>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="stage-deals">
+                        <div class="empty-stage">This stage is empty</div>
+                    </div>
+                    <div class="stage-footer">
+                        <button class="add-deal-btn">
+                        <i class="fas fa-plus"></i> Deal
+                        </button>
+                        <button class="expand-btn">
+                        <i class="fas fa-expand-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Proposal/Price Quote Stage -->
+                <div class="stage" data-stage="proposal">
+                <div class="stage-header">
+                    <div class="stage-info">
+                    <h3>Proposal/Price Quote</h3>
+                    <div class="stage-stats">
+                        <span class="stage-amount">₹0.00</span>
+                        <span class="stage-count">0 Deal</span>
+                    </div>
+                    </div>
+                    <div class="stage-actions">
+                    <button class="more-btn">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <div class="stage-toggle">
+                        <input
+                        type="checkbox"
+                        id="stage3-toggle"
+                        class="stage-checkbox"
+                        />
+                        <label for="stage3-toggle" class="stage-label"></label>
+                    </div>
+                    </div>
+                </div>
+                <div class="stage-deals">
+                    <div class="empty-stage">This stage is empty</div>
+                </div>
+                <div class="stage-footer">
+                    <button class="add-deal-btn">
+                    <i class="fas fa-plus"></i> Deal
+                    </button>
+                    <button class="expand-btn">
+                    <i class="fas fa-expand-alt"></i>
+                    </button>
+                </div>
+                </div>
+
+                <!-- Negotiation/Review Stage -->
+                <div class="stage" data-stage="negotiation">
+                <div class="stage-header">
+                    <div class="stage-info">
+                    <h3>Negotiation/Review</h3>
+                    <div class="stage-stats">
+                        <span class="stage-amount">₹0.00</span>
+                        <span class="stage-count">0 Deal</span>
+                    </div>
+                    </div>
+                    <div class="stage-actions">
+                    <button class="more-btn">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <div class="stage-toggle">
+                        <input
+                        type="checkbox"
+                        id="stage4-toggle"
+                        class="stage-checkbox"
+                        />
+                        <label for="stage4-toggle" class="stage-label"></label>
+                    </div>
+                    </div>
+                </div>
+                <div class="stage-deals">
+                    <div class="empty-stage">This stage is empty</div>
+                </div>
+                <div class="stage-footer">
+                    <button class="add-deal-btn">
+                    <i class="fas fa-plus"></i> Deal
+                    </button>
+                    <button class="expand-btn">
+                    <i class="fas fa-expand-alt"></i>
+                    </button>
+                </div>
+                </div>
+
+                <!-- Closed Won -->
+                <div class="stage" data-stage="closed">
+                <div class="stage-header">
+                    <div class="stage-info">
+                    <h3>Closed Won</h3>
+                    <div class="stage-stats">
+                        <span class="stage-amount">₹0.00</span>
+                        <span class="stage-count">0 Deal</span>
+                    </div>
+                    </div>
+                    <div class="stage-actions">
+                    <button class="more-btn">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <div class="stage-toggle">
+                        <input
+                        type="checkbox"
+                        id="stage5-toggle"
+                        class="stage-checkbox"
+                        />
+                        <label for="stage5-toggle" class="stage-label"></label>
+                    </div>
+                    </div>
+                </div>
+                <div class="stage-deals">
+                    <div class="empty-stage">This stage is empty</div>
+                </div>
+                <div class="stage-footer">
+                    <button class="add-deal-btn">
+                    <i class="fas fa-plus"></i> Deal
+                    </button>
+                    <button class="expand-btn">
+                    <i class="fas fa-expand-alt"></i>
+                    </button>
+                </div>
+                </div>
+                <!-- Closed Lost -->
+                <div class="stage" data-stage="closed">
+                <div class="stage-header">
+                    <div class="stage-info">
+                    <h3>Closed Lost</h3>
+                    <div class="stage-stats">
+                        <span class="stage-amount">₹0.00</span>
+                        <span class="stage-count">0 Deal</span>
+                    </div>
+                    </div>
+                    <div class="stage-actions">
+                    <button class="more-btn">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <div class="stage-toggle">
+                        <input
+                        type="checkbox"
+                        id="stage5-toggle"
+                        class="stage-checkbox"
+                        />
+                        <label for="stage5-toggle" class="stage-label"></label>
+                    </div>
+                    </div>
+                </div>
+                <div class="stage-deals">
+                    <div class="empty-stage">This stage is empty</div>
+                </div>
+                <div class="stage-footer">
+                    <button class="add-deal-btn">
+                    <i class="fas fa-plus"></i> Deal
+                    </button>
+                    <button class="expand-btn">
+                    <i class="fas fa-expand-alt"></i>
+                    </button>
+                </div>
+                </div>
+            </div>
+            </div>
+      </main>
+        
     </div>
+
+
     <div class="modal-form">
-        //abhiram
+        
+        <div class="modal-form-header">
+            <h2>Create Deal</h2>
+        </div>
+        <div class="modal-form-body">
+            <div class="modal-form-section">
+                <h3 class="modal-form-section-title">Deal Information</h3>
+                <div class="modal-form-group">
+                    <label for="deal-name">Deal Name</label>
+                    <input type="text" id="deal-name" class="modal-form-control" required>
+                </div>
+                <div class="modal-form-group">
+                    <label for="owner">Owner</label>
+                    <div class="owner-field">
+                        <button class="owner-button">
+                            <span>Abhiram M Prasad</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-form-group">
+                    <label for="companyName">Company Name</label>
+                    <input type="text" id="companyName" class="modal-form-control">
+                </div>
+                <div class="modal-form-group">
+                    <label for="contactName">Contact Name</label>
+                    <input type="text" id="contactName" class="modal-form-control">
+                </div>
+
+                <div class="modal-form-group dropdown field">
+                    <label for="deal-stage">Deal Stage</label>
+                    <select id="deal-stage" class="modal-form-control custom-select" required>
+                        <option value="" disabled selected>Choose a stage</option>
+                        <option value="Qualification">Qualification</option>
+                        <option value="Needs Analysis">Needs Analysis</option>
+                        <option value="Proposal/Price Quote">Proposal/Price Quote</option>
+                        <option value="Negotiation/Review">Negotiation/Review</option>
+                        <option value="Closed Won">Closed Won</option>
+                        <option value="Closed Lost">Closed Lost</option>
+                    </select>
+                </div>
+                <div class="modal-form-group">
+                    <label for="amount">Amount</label>
+                    <div class="modal-form-input-group">
+                        <span class="modal-form-input-group-prepend">₹</span>
+                        <input type="number" id="amount" class="modal-form-control" required>
+                    </div>
+                </div>
+                <div class="modal-form-group">
+                    <label for="closingDate">Closing Date</label>
+                    <input type="date" id="closingDate" class="modal-form-control" required>
+                </div>
+                <div class="modal-form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" class="modal-form-control" rows="4" placeholder="A few words about this deal"></textarea>
+                </div>
+                <div class="modal-form-footer">
+                    <button class="btn modal-form-cancel" id="cancelBtn">Cancel</button>
+                    <button class="btn modal-form-submit" id="saveBtn">Save</button>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+
+
+
+
+
+
+    <!-- Linking Js file -->
+    <script src="script.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    
+    
+    <script src="script.js"></script>
 </body>
+
+
+
+
 </html>
