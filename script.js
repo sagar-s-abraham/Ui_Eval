@@ -11,11 +11,11 @@ const cancelButtons = document.querySelectorAll('.cancel-btn');
 // Stage data mapping
 const stageMap = {
   qualification: { name: 'Qualification', element: document.querySelector('[data-stage="qualification"]') },
-  needs_analysis: { name: 'Needs Analysis', element: document.querySelector('[data-stage="needs-analysis"]') },
+  'needs-analysis': { name: 'Needs Analysis', element: document.querySelector('[data-stage="needs-analysis"]') },
   proposal: { name: 'Proposal/Price Quote', element: document.querySelector('[data-stage="proposal"]') },
   negotiation: { name: 'Negotiation/Review', element: document.querySelector('[data-stage="negotiation"]') },
-  closed_won: { name: 'Closed Won', element: document.querySelector('[data-stage="closed"]') },
-  closed_lost: { name: 'Closed Lost', element: document.querySelector('[data-stage="closed"]') }
+  closed_won: { name: 'Closed Won', element: document.querySelector('[data-stage="closed_won"]') },
+  closed_lost: { name: 'Closed Lost', element: document.querySelector('[data-stage="closed_lost"]') }
 };
 
 // Format currency
@@ -67,6 +67,7 @@ const createDealCardHTML = (deal) => {
 // Add deal to stage
 const addDealToStage = (deal) => {
   const stage = stageMap[deal.stage]?.element;
+  
   if (!stage) return; // Skip if stage doesn't exist
   
   const dealsContainer = stage.querySelector('.stage-deals');
@@ -89,6 +90,7 @@ const addDealToStage = (deal) => {
 
 // Update stage statistics
 const updateStageStats = (stageId) => {
+  console.log(stageMap);
   const stage = stageMap[stageId].element;
   if (!stage) return; // Skip if stage element doesn't exist
   
@@ -156,7 +158,9 @@ const setupDragAndDrop = () => {
         
         // Update deal in database
         const newStage = targetStage.getAttribute('data-stage');
+        console.log("drop stage name:"+newStage);
         updateDealStage(dealId, newStage);
+
         
         // Update stats for both stages
         updateStageStats(sourceStage.getAttribute('data-stage'));
@@ -187,7 +191,7 @@ const fetchDeals = () => {
       // Clear existing deals
       document.querySelectorAll('.stage-deals').forEach(container => {
         // Reset to empty state
-        container.innerHTML = '<div class="empty-stage">This stage is empty</div>';
+        
       });
       
       if (dealsData) {
@@ -340,6 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
   addDealCardEventListeners();
 });
 
+// this is added, so that the user cant able to enter the value of closing date before todays date. 
 const today = new Date().toISOString().split('T')[0];
 document.getElementById('closingDate').setAttribute('min', today);
 document.getElementById('closingDate').addEventListener('focus', function() {
