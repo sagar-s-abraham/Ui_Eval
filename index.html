@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="right-section">
-            <span class="trial-info">12 days left in your Premier trial. <a href="#" class="upgrade-link">Upgrade</a></span>
+            <!--<span class="trial-info">12 days left in your Premier trial. <a href="#" class="upgrade-link">Upgrade</a></span>-->
             <button class="add-btn"><i class="fas fa-plus"></i></button>
             <button class="icon-btn"><i class="far fa-clipboard"></i></button>
             <button class="icon-btn"><i class="far fa-bell"></i></button>
@@ -126,9 +126,9 @@
                         <button class="view-btn"><i class="fas fa-columns"></i></button>
                         <button class="view-btn"><i class="fas fa-bars"></i></button>
                         <div class="dropdown">
-                            <button class="add-deal-btn">
-                            <i class="fas fa-plus"></i> Deal
-                            <i class="fas fa-chevron-down"></i>
+                            <button class="add-deal-btn" >
+                                <i class="fas fa-plus"></i> Deal
+                                <i class="fas fa-chevron-down"></i>
                             </button>
                         </div>
                         <button class="more-btn">
@@ -144,8 +144,8 @@
                         <div class="stage-info">
                         <h3>Qualification</h3>
                         <div class="stage-stats">
-                            <span class="stage-amount">₹11,671.00</span>
-                            <span class="stage-count">2 Deals</span>
+                            <span class="stage-amount">₹0.00</span>
+                            <span class="stage-count">0 Deals</span>
                         </div>
                         </div>
                         <div class="stage-actions">
@@ -163,24 +163,8 @@
                         </div>
                     </div>
                     <div class="stage-deals">
-                        <!-- Deal Card 1 -->
-                        <div class="deal-card" draggable="true" data-deal-id="1">
-                        <div class="deal-title">Shingadi</div>
-                        <div class="deal-owner">Shibu</div>
-                        <div class="deal-details">
-                            <span class="deal-amount">₹6,000.00</span>
-                            <span class="deal-date">Mar 26</span>
-                        </div>
-                        </div>
-                        <!-- Deal Card 2 -->
-                        <div class="deal-card" draggable="true" data-deal-id="2">
-                            <div class="deal-title">Zylker Yearly Subscription</div>
-                            <div class="deal-owner">Ted Watson</div>
-                            <div class="deal-details">
-                                <span class="deal-amount">₹5,671.00</span>
-                                <span class="deal-date">Mar 18</span>
-                            </div>
-                        </div>
+                        <!-- Deal cards will be added here dynamically -->
+                        <div class="empty-stage">This stage is empty</div>
                     </div>
                     <div class="stage-footer">
                         <button class="add-deal-btn">
@@ -217,6 +201,7 @@
                         </div>
                     </div>
                     <div class="stage-deals">
+                        <!-- Deal cards will be added here dynamically -->
                         <div class="empty-stage">This stage is empty</div>
                     </div>
                     <div class="stage-footer">
@@ -253,6 +238,7 @@
                     </div>
                 </div>
                 <div class="stage-deals">
+                    <!-- Deal cards will be added here dynamically -->
                     <div class="empty-stage">This stage is empty</div>
                 </div>
                 <div class="stage-footer">
@@ -290,6 +276,7 @@
                     </div>
                 </div>
                 <div class="stage-deals">
+                    <!-- Deal cards will be added here dynamically -->
                     <div class="empty-stage">This stage is empty</div>
                 </div>
                 <div class="stage-footer">
@@ -327,6 +314,7 @@
                     </div>
                 </div>
                 <div class="stage-deals">
+                    <!-- Deal cards will be added here dynamically -->
                     <div class="empty-stage">This stage is empty</div>
                 </div>
                 <div class="stage-footer">
@@ -363,6 +351,7 @@
                     </div>
                 </div>
                 <div class="stage-deals">
+                    <!-- Deal cards will be added here dynamically -->
                     <div class="empty-stage">This stage is empty</div>
                 </div>
                 <div class="stage-footer">
@@ -381,84 +370,122 @@
     </div>
 
 
-    <div class="modal-form">
-        
-        <div class="modal-form-header">
-            <h2>Create Deal</h2>
-        </div>
-        <div class="modal-form-body">
-            <div class="modal-form-section">
-                <h3 class="modal-form-section-title">Deal Information</h3>
-                <div class="modal-form-group">
-                    <label for="deal-name">Deal Name</label>
-                    <input type="text" id="deal-name" class="modal-form-control" required>
-                </div>
-                <div class="modal-form-group">
-                    <label for="owner">Owner</label>
-                    <div class="owner-field">
-                        <button class="owner-button">
-                            <span>Abhiram M Prasad</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="modal-form-group">
-                    <label for="companyName">Company Name</label>
-                    <input type="text" id="companyName" class="modal-form-control">
-                </div>
-                <div class="modal-form-group">
-                    <label for="contactName">Contact Name</label>
-                    <input type="text" id="contactName" class="modal-form-control">
-                </div>
-
-                <div class="modal-form-group dropdown field">
-                    <label for="deal-stage">Deal Stage</label>
-                    <select id="deal-stage" class="modal-form-control custom-select" required>
-                        <option value="" disabled selected>Choose a stage</option>
-                        <option value="Qualification">Qualification</option>
-                        <option value="Needs Analysis">Needs Analysis</option>
-                        <option value="Proposal/Price Quote">Proposal/Price Quote</option>
-                        <option value="Negotiation/Review">Negotiation/Review</option>
-                        <option value="Closed Won">Closed Won</option>
-                        <option value="Closed Lost">Closed Lost</option>
-                    </select>
-                </div>
-                <div class="modal-form-group">
-                    <label for="amount">Amount</label>
-                    <div class="modal-form-input-group">
-                        <span class="modal-form-input-group-prepend">₹</span>
-                        <input type="number" id="amount" class="modal-form-control" required>
-                    </div>
-                </div>
-                <div class="modal-form-group">
-                    <label for="closingDate">Closing Date</label>
-                    <input type="date" id="closingDate" class="modal-form-control" required>
-                </div>
-                <div class="modal-form-group">
-                    <label for="description">Description</label>
-                    <textarea id="description" class="modal-form-control" rows="4" placeholder="A few words about this deal"></textarea>
-                </div>
-                <div class="modal-form-footer">
-                    <button class="btn modal-form-cancel" id="cancelBtn">Cancel</button>
-                    <button class="btn modal-form-submit" id="saveBtn">Save</button>
-                </div>
+   <!-- Deal Modal -->
+  <div class="modal" id="dealModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Create Deal</h2>
+        <button class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="dealForm">
+          <div class="form-header">
+            <h3>Deal Information</h3>
+            <div class="owner-field">
+              <label>Owner</label>
+              <div class="owner-select">
+                <img src="images/profile.jpeg?height=30&width=30" alt="Owner avatar" class="owner-avatar">
+                <span class="owner-name">Abhiram M Prasad</span>
+                
+              </div>
             </div>
+          </div>
+
+          <div class="form-group">
+            <label for="dealName">Deal Name</label>
+            <input type="text" id="dealName" name="dealName" required>
+          </div>
+
+          <div class="form-group">
+            <label for="companyName">Company Name</label>
+            <div class="input-with-icon">
+              <input type="text" id="companyName" name="companyName" placeholder="Enter company name">
+              <i class="fas fa-building"></i> 
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="companyName">Company Phone Number</label>
+            <div class="input-with-icon">
+              <input type="text" id="companyPhnNumber" name="companyPhnNumber" placeholder="Enter company phn number">
+              <i class="fa-solid fa-phone"></i> 
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="contactName">Contact Name</label>
+            <div class="input-with-icon">
+              <input type="text" id="contactName" name="contactName" placeholder="Enter contact name">
+              <i class="fas fa-user"></i> 
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contactName">Contact Phone Number</label>
+            <div class="input-with-icon">
+              <input type="text" id="contactPhnNumber" name="contactPhnNumber" placeholder="Enter contact phn number">
+              <i class="fa-solid fa-phone"></i> 
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contactName">Contact Email</label>
+            <div class="input-with-icon">
+              <input type="text" id="contactEmail" name="contactEmail" placeholder="Enter contact email">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="stage">Stage</label>
+            <div class="select-wrapper">
+              <select id="stage" name="stage" required>
+                <option value="" disabled selected>Choose a stage</option>
+                <option value="qualification">Qualification</option>
+                <option value="needs_analysis">Needs Analysis</option>
+                <option value="proposal">Proposal/Price Quote</option>
+                <option value="negotiation">Negotiation/Review</option>
+                <option value="closed_won">Closed Won <i class="fas fa-thumbs-up"></i></option>
+                <option value="closed_lost">Closed Lost<i class="fas fa-thumbs-down"></i></option>
+              </select>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="amount">Amount</label>
+            <div class="input-with-currency">
+              <input type="number" id="amount" name="amount" step="0.01" required>
+              <span class="currency-symbol">₹</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="closingDate">Closing Date</label>
+            <input type="date" id="closingDate" name="closingDate" placeholder="MM/DD/YYYY" required>
         </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" placeholder="A few words about this deal"></textarea>
+          </div>
+
+          <div class="form-group products-section">
+            <button type="button" class="add-products-btn">
+              <i class="fas fa-plus"></i> Products
+            </button>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="customize-btn">Customize Fields</button>
+            <div class="form-buttons">
+              <button type="button" class="cancel-btn">Cancel</button>
+              <button type="submit" class="save-btn">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-
-
-
-
-
-
-
+  </div>
 
     <!-- Linking Js file -->
-    <script src="script.js"></script>
-
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-    
-    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
 </body>
 
