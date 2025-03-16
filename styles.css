@@ -89,16 +89,6 @@ a {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.trial-info {
-  margin-right: 15px;
-  font-size: 13px;
-}
-
-.upgrade-link {
-  color: #4fc3f7;
-  font-weight: bold;
-}
-
 .add-btn {
   width: 32px;
   height: 32px;
@@ -120,6 +110,7 @@ a {
   justify-content: center;
   cursor: pointer;
   color: #fff;
+  margin-right: 10px;
 }
 .icon-btn:hover {
   background-color: rgba(255, 255, 255, 0.1);
@@ -419,6 +410,16 @@ a {
   color: #666;
 }
 
+/* Drag and Drop Styles */
+.deal-card.dragging {
+  opacity: 0.5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.stage.drag-over {
+  background-color: #f0f7ff;
+}
+
 .empty-stage {
   color: #999;
   text-align: center;
@@ -447,6 +448,308 @@ a {
   justify-content: center;
   cursor: pointer;
   background-color: #f5f7fa;
+}
+
+/* Modal Styles */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+/* Form Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.modal-content {
+  background-color: white;
+  margin: 50px auto;
+  width: 100%;
+  max-width: 600px;
+  height: 150vh;
+  position: absolute;
+  right: 0;
+  animation: slideIn 0.3s ease-out;
+}
+
+.modal-header {
+  padding: 16px 24px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-header h2 {
+  font-size: 20px;
+  color: #333;
+  font-weight: 600;
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  padding: 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.close-btn:hover {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+.form-header h3 {
+  font-size: 16px;
+  color: #333;
+  font-weight: 600;
+  margin: 0;
+}
+
+.owner-field {
+  text-align: center;
+}
+.owner-field label {
+  font-size: 12px;
+  color: black;
+  margin-bottom: 8px;
+  display: block;
+  font-weight: 600;
+}
+
+.owner-select {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 9999px;
+  cursor: pointer;
+  background-color: #f9fafb;
+}
+
+.owner-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.owner-name {
+  font-size: 14px;
+  color: #333;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.form-group label {
+  flex: 0 0 120px; /* Fixed width for labels */
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+.form-group input, .form-group select, .form-group textarea {
+  flex: 1;
+  padding: 8px 12px;
+  padding-right: 36px; /* Extra padding for icons */
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #111827;
+  background-color: white;
+  transition: all 0.2s;
+  width: 100%;
+  max-width: 400px;
+  height: 40px;
+  box-sizing: border-box;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline: none;
+  border-color: #23ae73;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.input-with-icon {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+.input-with-icon i {
+  position: absolute;
+  right: 12px;
+  top: 60%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  pointer-events: none;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0 10px;
+}
+
+.add-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  font-size: 14px;
+  padding: 0 10px;
+  color: #4caf50;
+}
+
+.select-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+.select-wrapper select {
+  appearance: none;
+  width: 100%;
+}
+.select-wrapper i {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  pointer-events: none;
+}
+
+.input-with-currency {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+.input-with-currency input {
+  width: 100%;
+}
+
+.currency-symbol {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+.products-section {
+  margin-top: 20px;
+}
+
+.add-products-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #eff6ff;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 16px;
+}
+.add-products-btn:hover {
+  background-color: #dbeafe;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.customize-btn {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.customize-btn:hover {
+  background-color: #eff6ff;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.cancel-btn {
+  padding: 8px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background-color: white;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.cancel-btn:hover {
+  background-color: #f9fafb;
+  border-color: #d1d5db;
+}
+
+.save-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #23ae73;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.save-btn:hover {
+  background-color: #50ca54;
+}
+
+#dealName,
+#contactName,
+#stage,
+#closingDate {
+  border-left: 4px solid red;
 }
 
 /*# sourceMappingURL=styles.css.map */
