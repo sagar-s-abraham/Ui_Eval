@@ -1,6 +1,7 @@
 // Variables
 
-$primary-color: #004d71;
+$pipeline-color: #0a4a5f;
+$primary-color: #0C3B4C;
 $secondary-color: #4caf50;
 $background-color: #f5f7fa;
 $text-color: #333;
@@ -187,7 +188,7 @@ a {
 /* Sidebar */
 .sidebar {
     width: 76px;
-    background-color: $primary-color;
+    background-color: $primary-color; 
     color: $white;
     display: flex;
     flex-direction: column;
@@ -209,8 +210,8 @@ a {
         }
 
         &.active {
-            background-color: #00395a;
-            border-left: 3px solid $secondary-color;
+            background-color: #14B474;
+            
         }
     }
 }
@@ -224,7 +225,7 @@ a {
 
 // Pipeline Header
 .pipeline-header {
-    background-color: $primary-color;
+    background-color: $pipeline-color;
     color: $white;
     padding: 15px 20px;
 }
@@ -254,7 +255,7 @@ a {
     }
 
     &.active {
-        background-color: #00395a;
+        background-color: #67b94d42;
     }
 }
 
