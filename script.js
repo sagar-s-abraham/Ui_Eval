@@ -18,6 +18,10 @@ const stageMap = {
   closed_lost: { name: 'Closed Lost', element: document.querySelector('[data-stage="closed_lost"]') }
 };
 
+if(localStorage.getItem('userId')) {
+  console.log('user id exists');
+}
+
 // Format currency
 const formatCurrency = (amount) => {
   return new Intl.NumberFormat('en-IN', {
@@ -90,7 +94,7 @@ const addDealToStage = (deal) => {
 
 // Update stage statistics
 const updateStageStats = (stageId) => {
-  console.log(stageMap);
+  
   const stage = stageMap[stageId].element;
   if (!stage) return; // Skip if stage element doesn't exist
   
@@ -158,7 +162,7 @@ const setupDragAndDrop = () => {
         
         // Update deal in database
         const newStage = targetStage.getAttribute('data-stage');
-        console.log("drop stage name:"+newStage);
+  
         updateDealStage(dealId, newStage);
 
         
@@ -172,15 +176,36 @@ const setupDragAndDrop = () => {
 
 // Update deal stage in database
 const updateDealStage = (dealId, newStage) => {
-  // Now using the deals table structure
-  axios.patch(`${API_URL}deals/${dealId}.json`, { stage: newStage })
+  // Create a new stage history entry
+  const stageChange = {
+    stage: newStage,
+    timestamp: Date.now(),
+    time: new Date().toLocaleTimeString('en-US', { 
+      hour: '2-digit', 
+      minute: '2-digit', 
+      hour12: true
+    })
+  };
+ 
+  // First, get the current deal data to access the stageHistory
+  axios.get(`${API_URL}deals/${dealId}.json`)
     .then(response => {
-      console.log('Deal stage updated:', response.data);
+      const dealData = response.data;
+      const currentStageHistory = dealData.stageHistory || [];
+      // Update the deal with the new stage and updated stageHistory
+      return axios.patch(`${API_URL}deals/${dealId}.json`, { 
+        stage: newStage,
+        stageHistory: [...currentStageHistory, stageChange]
+      });
+    })
+    .then(response => {
+      console.log('Deal stage updated with history:', response.data);
     })
     .catch(error => {
       console.error('Error updating deal stage:', error);
     });
 };
+
 
 // Fetch deals from API
 const fetchDeals = () => {
@@ -303,6 +328,14 @@ dealForm.addEventListener('submit', (e) => {
       minute: '2-digit',
       hour12: true
     }),
+    stageHistory: [{    
+      stage: formData.get('stage'),    
+      timestamp: Date.now(),    
+      time: new Date().toLocaleTimeString('en-US', {      
+        hour: '2-digit',      
+        minute: '2-digit',      
+        hour12: true    })  
+    }]
   };
   
   axios.post(DEALS_ENDPOINT, dealData)
