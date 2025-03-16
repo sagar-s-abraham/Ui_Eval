@@ -1,0 +1,140 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.description {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.description .project-section .arrow i {
+  height: 20px;
+  width: 30px;
+}
+.description .project-section .project-name {
+  font-size: large;
+}
+.description .project-section .money {
+  font-size: large;
+}
+.description .contact-name {
+  padding: 20px;
+  display: flex;
+}
+.description .contact-name .crown {
+  padding-right: 10px;
+}
+
+.mx-2 {
+  color: #6b7280;
+}
+
+.pipeline {
+  padding-left: 15px;
+}
+
+.status-timeline {
+  width: 100%;
+  max-width: 100%;
+  padding: 20px;
+}
+
+.progress-container {
+  position: relative;
+  width: 100%;
+}
+
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.progress-line {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #e5e7eb; /* Default line color */
+  z-index: 1;
+}
+
+.step {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.step .circle {
+  background-color: #fff;
+  border: 2px solid #e5e7eb; /* Default border color */
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  color: #6b7280;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.step .step-text {
+  margin-top: 8px;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 500;
+}
+.step.active .circle {
+  border-color: #3b82f6;
+  background-color: #3b82f6;
+  color: white;
+}
+.step.active .step-text {
+  color: #3b82f6;
+}
+.step.closed-lost .circle {
+  border-color: #f87171; /* Red border for closed lost */
+  background-color: #f87171; /* Red background for closed lost */
+  color: white;
+}
+.step.closed-lost .step-text {
+  color: #f87171; /* Red text for closed lost */
+}
+.step.closed-lost .progress-line {
+  background-color: #f87171; /* Red line for closed lost */
+}
+.step.closed-won .circle {
+  border-color: #4caf50; /* Green border for closed won */
+  background-color: #4caf50; /* Green background for closed won */
+  color: white;
+}
+.step.closed-won .step-text {
+  color: #4caf50; /* Green text for closed won */
+}
+.step.closed-won .progress-line {
+  background-color: #4caf50; /* Green line for closed won */
+}
+.step.inactive-lost .circle {
+  border-color: #e5e7eb; /* Inactive border for closed lost initially */
+  background-color: #e5e7eb; /* Inactive background for closed lost initially */
+  color: #6b7280; /* Default text color */
+}
+.step.inactive-lost .step-text {
+  color: #6b7280; /* Default text color */
+}
+.step.inactive-won .circle {
+  border-color: #e5e7eb; /* Inactive border for closed won initially */
+  background-color: #e5e7eb; /* Inactive background for closed won initially */
+  color: #6b7280; /* Default text color */
+}
+.step.inactive-won .step-text {
+  color: #6b7280; /* Default text color */
+}
+
+/*# sourceMappingURL=details.css.map */
