@@ -785,4 +785,15 @@ a {
 border-left: 4px solid red; 
 }
 
+input[type="date"] {
+    // Hide the default calendar icon in webkit browsers (Chrome, Safari, newer Edge)
+    &::-webkit-calendar-picker-indicator {
+      display: none;
+      -webkit-appearance: none;
+    }
+    
+    // Firefox
+    appearance: textfield;
+}
+
 

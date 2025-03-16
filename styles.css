@@ -752,4 +752,13 @@ a {
   border-left: 4px solid red;
 }
 
+input[type=date] {
+  appearance: textfield;
+}
+input[type=date]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+
 /*# sourceMappingURL=styles.css.map */
