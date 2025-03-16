@@ -18,10 +18,6 @@ const stageMap = {
   closed_lost: { name: 'Closed Lost', element: document.querySelector('[data-stage="closed_lost"]') }
 };
 
-if(localStorage.getItem('userId')) {
-  console.log('user id exists');
-}
-
 // Format currency
 const formatCurrency = (amount) => {
   return new Intl.NumberFormat('en-IN', {
