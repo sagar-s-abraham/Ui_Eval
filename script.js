@@ -1,5 +1,5 @@
-const API_URL = 'https://jsproject-6bca2-default-rtdb.firebaseio.com/';
-const DEALS_ENDPOINT = API_URL + 'deals.json'; 
+const API_URL = 'https://jsproject-6bca2-default-rtdb.firebaseio.com/';   // setting the firebase db api
+const DEALS_ENDPOINT = API_URL + 'deals.json';                         // creating specific end point for deals.json
 
 // DOM Elements
 const dealModal = document.getElementById('dealModal');
@@ -18,22 +18,22 @@ const stageMap = {
   closed_lost: { name: 'Closed Lost', element: document.querySelector('[data-stage="closed_lost"]') }
 };
 
-// Format currency
+// Format currency - Formats numbers as Indian Rupees (₹)
 const formatCurrency = (amount) => {
-  return new Intl.NumberFormat('en-IN', {
+  return new Intl.NumberFormat('en-IN', {            // Intl.NumberFormat is a built-in JavaScript object that formats numbers according to locale conventions
     style: 'currency',
     currency: 'INR',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
+    minimumFractionDigits: 2,                        // Both these settings ensure that there will always be exactly 2 decimal places
+    maximumFractionDigits: 2                         // For example, 100 will display as "₹100.00" and 100.5 will display as "₹100.50"
   }).format(amount).replace('₹', '₹');
 };
 
-// Format date to MMM DD format
+// Format date - Changes date strings to a simple "Month Day" format (like "Mar 17")
 const formatDate = (dateString) => {
-  const date = new Date(dateString);
+  const date = new Date(dateString);                // Creates a JavaScript Date object from the input string
   const month = date.toLocaleString('en-US', { month: 'short' });
-  const day = date.getDate();
-  return `${month} ${day}`;
+  const day = date.getDate();                                      // getDate() extracts just the day of the month (1-31) from the date object
+  return `${month} ${day}`;               // Jan 27
 };
 
 // Show modal
@@ -79,7 +79,7 @@ const addDealToStage = (deal) => {
   }
   
   // Add deal card to stage
-  dealsContainer.insertAdjacentHTML('beforeend', createDealCardHTML(deal));
+  dealsContainer.insertAdjacentHTML('beforeend', createDealCardHTML(deal));   // 'beforeend' means it will be inserted as the last child of the container
   
   // Update stage stats
   updateStageStats(deal.stage);
@@ -119,7 +119,7 @@ const addDealCardEventListeners = () => {
   // Make cards draggable
   document.querySelectorAll('.deal-card').forEach(card => {
     card.addEventListener('dragstart', (e) => {
-      e.dataTransfer.setData('text/plain', card.getAttribute('data-deal-id'));
+      e.dataTransfer.setData('text/plain', card.getAttribute('data-deal-id'));   // dataTransfer is an object that holds data being dragged
       setTimeout(() => {
         card.classList.add('dragging');
       }, 0);
@@ -149,8 +149,8 @@ const setupDragAndDrop = () => {
       
       const dealId = e.dataTransfer.getData('text/plain');
       const dealCard = document.querySelector(`[data-deal-id="${dealId}"]`);
-      const sourceStage = dealCard.closest('.stage');
-      const targetStage = stage;
+      const sourceStage = dealCard.closest('.stage');           // Finds the stage that the deal card was dragged from
+      const targetStage = stage;               // stage where deal card drops to
       
       if (sourceStage !== targetStage) {
         const dealsContainer = targetStage.querySelector('.stage-deals');
@@ -172,16 +172,16 @@ const setupDragAndDrop = () => {
 
 // Update deal stage in database
 const updateDealStage = (dealId, newStage) => {
-  // Create a new stage history entry
-  const stageChange = {
+  // Create a new stage history entry     object 
+  const stageChange = { 
     stage: newStage,
     timestamp: Date.now(),
     time: new Date().toLocaleTimeString('en-US', { 
       hour: '2-digit', 
       minute: '2-digit', 
       hour12: true
-    })
-  };
+  })
+};
  
   // First, get the current deal data to access the stageHistory
   axios.get(`${API_URL}deals/${dealId}.json`)
