@@ -64,41 +64,30 @@ const createDealCardHTML = (deal) => {
   `;
 };
 
-// Add deal to stage
 const addDealToStage = (deal) => {
   const stage = stageMap[deal.stage]?.element;
   
-  if (!stage) return; // Skip if stage doesn't exist
+  if (!stage) return;
   
   const dealsContainer = stage.querySelector('.stage-deals');
   
-  // Remove "This stage is empty" message if it exists
-  const emptyMessage = dealsContainer.querySelector('.empty-stage');
-  if (emptyMessage) {
-    dealsContainer.innerHTML = '';
-  }
-  
-  // Add deal card to stage
   dealsContainer.insertAdjacentHTML('beforeend', createDealCardHTML(deal));   // 'beforeend' means it will be inserted as the last child of the container
-  
-  // Update stage stats
+
   updateStageStats(deal.stage);
   
-  // Add event listeners to the new deal card
   addDealCardEventListeners();
 };
 
-// Update stage statistics
+
 const updateStageStats = (stageId) => {
   
   const stage = stageMap[stageId].element;
-  if (!stage) return; // Skip if stage element doesn't exist
+  if (!stage) return; 
   
   const deals = stage.querySelectorAll('.deal-card');
   const amountElement = stage.querySelector('.stage-amount');
   const countElement = stage.querySelector('.stage-count');
   
-  // Calculate total amount
   let totalAmount = 0;
   deals.forEach(deal => {
     const amountText = deal.querySelector('.deal-amount').textContent;
@@ -106,13 +95,11 @@ const updateStageStats = (stageId) => {
     totalAmount += isNaN(amount) ? 0 : amount;
   });
   
-  // Update stats
   amountElement.textContent = formatCurrency(totalAmount);
   countElement.textContent = `${deals.length} Deal${deals.length !== 1 ? 's' : ''}`;
   
 };
 
-// Add event listeners to deal cards
 const addDealCardEventListeners = () => {
   
   
@@ -183,12 +170,12 @@ const updateDealStage = (dealId, newStage) => {
   })
 };
  
-  // First, get the current deal data to access the stageHistory
+
   axios.get(`${API_URL}deals/${dealId}.json`)
     .then(response => {
       const dealData = response.data;
       const currentStageHistory = dealData.stageHistory || [];
-      // Update the deal with the new stage and updated stageHistory
+      
       return axios.patch(`${API_URL}deals/${dealId}.json`, { 
         stage: newStage,
         stageHistory: [...currentStageHistory, stageChange]
@@ -264,7 +251,7 @@ const initDatePicker = () => {
   });
 };
 
-// Event Listeners
+
 // Open deal modal
 addDealButtons.forEach(btn => {
   btn.addEventListener('click', () => {
@@ -298,8 +285,8 @@ cancelButtons.forEach(btn => {
   });
 });
 
-// Submit deal form
-// Submit deal form
+
+
 dealForm.addEventListener('submit', (e) => {
   e.preventDefault();
   
@@ -308,15 +295,15 @@ dealForm.addEventListener('submit', (e) => {
   const dealData = {
     dealName: formData.get('dealName'),
     companyName: formData.get('companyName'),
-    companyPhoneNumber: formData.get('companyPhnNumber'),  // Add company phone
+    companyPhoneNumber: formData.get('companyPhnNumber'),  
     contactName: formData.get('contactName'),
-    contactPhoneNumber: formData.get('contactPhnNumber'),  // Add contact phone
-    contactEmail: formData.get('contactEmail'),            // Add contact email
+    contactPhoneNumber: formData.get('contactPhnNumber'),  
+    contactEmail: formData.get('contactEmail'),            
     stage: formData.get('stage'),
     amount: parseFloat(formData.get('amount')),
     closingDate: formData.get('closingDate'),
     description: formData.get('description'),
-    owner: 'Abhiram M Prasad', // Default owner
+    owner: 'Abhiram M Prasad', 
     createdAt: new Date().toISOString(),
     timestamp: Date.now(),
     timeCreated: new Date().toLocaleTimeString('en-US', {
@@ -338,12 +325,12 @@ dealForm.addEventListener('submit', (e) => {
     .then(response => {
       console.log('Deal created:', response.data);
       
-      // Get the deal ID from the response
+     
       const dealId = response.data.name;
       
       addDealToStage({...dealData, id: dealId});
       
-      // Close modal
+     
       hideModal(dealModal);
     })
     .catch(error => {
@@ -361,19 +348,14 @@ window.addEventListener('click', (e) => {
   }
 });
 
-// Initialize
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Fetch deals from API
+  
   fetchDeals();
-  
-  // Initialize date picker
   initDatePicker();
-  
-  // Add event listeners to existing deal cards
   addDealCardEventListeners();
 });
 
-// this is added, so that the user cant able to enter the value of closing date before todays date. 
 const today = new Date().toISOString().split('T')[0];
 document.getElementById('closingDate').setAttribute('min', today);
 document.getElementById('closingDate').addEventListener('focus', function() {
