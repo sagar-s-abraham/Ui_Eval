@@ -9,10 +9,7 @@
      <link rel="stylesheet" href="styles.css">
 
     <!-- Linking font awesome icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-
-    <link rel="stylesheet" href="styles.css">
-    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>    
 </head>
 <body>
 
@@ -164,7 +161,7 @@
                     </div>
                     <div class="stage-deals">
                         <!-- Deal cards will be added here dynamically -->
-                        <div class="empty-stage">This stage is empty</div>
+                        
                     </div>
                     <div class="stage-footer">
                         <button class="add-deal-btn">
@@ -202,7 +199,7 @@
                     </div>
                     <div class="stage-deals">
                         <!-- Deal cards will be added here dynamically -->
-                        <div class="empty-stage">This stage is empty</div>
+                        <div class="empty-stage"></div>
                     </div>
                     <div class="stage-footer">
                         <button class="add-deal-btn">
@@ -239,7 +236,7 @@
                 </div>
                 <div class="stage-deals">
                     <!-- Deal cards will be added here dynamically -->
-                    <div class="empty-stage">This stage is empty</div>
+                    <div class="empty-stage"></div>
                 </div>
                 <div class="stage-footer">
                     <button class="add-deal-btn">
@@ -277,7 +274,7 @@
                 </div>
                 <div class="stage-deals">
                     <!-- Deal cards will be added here dynamically -->
-                    <div class="empty-stage">This stage is empty</div>
+                    <div class="empty-stage"></div>
                 </div>
                 <div class="stage-footer">
                     <button class="add-deal-btn">
@@ -290,7 +287,7 @@
                 </div>
 
                 <!-- Closed Won -->
-                <div class="stage" data-stage="closed">
+                <div class="stage" data-stage="closed_won">
                 <div class="stage-header">
                     <div class="stage-info">
                     <h3>Closed Won</h3>
@@ -315,7 +312,7 @@
                 </div>
                 <div class="stage-deals">
                     <!-- Deal cards will be added here dynamically -->
-                    <div class="empty-stage">This stage is empty</div>
+                    <div class="empty-stage"></div>
                 </div>
                 <div class="stage-footer">
                     <button class="add-deal-btn">
@@ -327,7 +324,7 @@
                 </div>
                 </div>
                 <!-- Closed Lost -->
-                <div class="stage" data-stage="closed">
+                <div class="stage" data-stage="closed_lost">
                 <div class="stage-header">
                     <div class="stage-info">
                     <h3>Closed Lost</h3>
@@ -352,7 +349,7 @@
                 </div>
                 <div class="stage-deals">
                     <!-- Deal cards will be added here dynamically -->
-                    <div class="empty-stage">This stage is empty</div>
+                    <div class="empty-stage"></div>
                 </div>
                 <div class="stage-footer">
                     <button class="add-deal-btn">
@@ -439,7 +436,7 @@
               <select id="stage" name="stage" required>
                 <option value="" disabled selected>Choose a stage</option>
                 <option value="qualification">Qualification</option>
-                <option value="needs_analysis">Needs Analysis</option>
+                <option value="needs-analysis">Needs Analysis</option>
                 <option value="proposal">Proposal/Price Quote</option>
                 <option value="negotiation">Negotiation/Review</option>
                 <option value="closed_won">Closed Won <i class="fas fa-thumbs-up"></i></option>
@@ -458,7 +455,11 @@
           </div>
           <div class="form-group">
             <label for="closingDate">Closing Date</label>
-            <input type="date" id="closingDate" name="closingDate" placeholder="MM/DD/YYYY" required>
+            <div class="input-with-icon">
+                <input type="date" id="closingDate" name="closingDate" placeholder="MM/DD/YYYY" required>
+                <i class="fa-solid fa-calendar-days"></i>
+            </div>
+            
         </div>
 
           <div class="form-group">

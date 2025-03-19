@@ -1,5 +1,5 @@
-const API_URL = 'https://jsproject-6bca2-default-rtdb.firebaseio.com/';
-const DEALS_ENDPOINT = API_URL + 'deals.json'; 
+const API_URL = 'https://jsproject-6bca2-default-rtdb.firebaseio.com/';   // setting the firebase db api
+const DEALS_ENDPOINT = API_URL + 'deals.json';                         // creating specific end point for deals.json
 
 // DOM Elements
 const dealModal = document.getElementById('dealModal');
@@ -11,29 +11,29 @@ const cancelButtons = document.querySelectorAll('.cancel-btn');
 // Stage data mapping
 const stageMap = {
   qualification: { name: 'Qualification', element: document.querySelector('[data-stage="qualification"]') },
-  needs_analysis: { name: 'Needs Analysis', element: document.querySelector('[data-stage="needs-analysis"]') },
+  'needs-analysis': { name: 'Needs Analysis', element: document.querySelector('[data-stage="needs-analysis"]') },
   proposal: { name: 'Proposal/Price Quote', element: document.querySelector('[data-stage="proposal"]') },
   negotiation: { name: 'Negotiation/Review', element: document.querySelector('[data-stage="negotiation"]') },
-  closed_won: { name: 'Closed Won', element: document.querySelector('[data-stage="closed"]') },
-  closed_lost: { name: 'Closed Lost', element: document.querySelector('[data-stage="closed"]') }
+  closed_won: { name: 'Closed Won', element: document.querySelector('[data-stage="closed_won"]') },
+  closed_lost: { name: 'Closed Lost', element: document.querySelector('[data-stage="closed_lost"]') }
 };
 
-// Format currency
+// Format currency - Formats numbers as Indian Rupees (₹)
 const formatCurrency = (amount) => {
-  return new Intl.NumberFormat('en-IN', {
+  return new Intl.NumberFormat('en-IN', {            // Intl.NumberFormat is a built-in JavaScript object that formats numbers according to locale conventions
     style: 'currency',
     currency: 'INR',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
+    minimumFractionDigits: 2,                        // Both these settings ensure that there will always be exactly 2 decimal places
+    maximumFractionDigits: 2                         // For example, 100 will display as "₹100.00" and 100.5 will display as "₹100.50"
   }).format(amount).replace('₹', '₹');
 };
 
-// Format date to MMM DD format
+// Format date - Changes date strings to a simple "Month Day" format (like "Mar 17")
 const formatDate = (dateString) => {
-  const date = new Date(dateString);
+  const date = new Date(dateString);                // Creates a JavaScript Date object from the input string
   const month = date.toLocaleString('en-US', { month: 'short' });
-  const day = date.getDate();
-  return `${month} ${day}`;
+  const day = date.getDate();                                      // getDate() extracts just the day of the month (1-31) from the date object
+  return `${month} ${day}`;               // Jan 27
 };
 
 // Show modal
@@ -64,39 +64,30 @@ const createDealCardHTML = (deal) => {
   `;
 };
 
-// Add deal to stage
 const addDealToStage = (deal) => {
   const stage = stageMap[deal.stage]?.element;
-  if (!stage) return; // Skip if stage doesn't exist
+  
+  if (!stage) return;
   
   const dealsContainer = stage.querySelector('.stage-deals');
   
-  // Remove "This stage is empty" message if it exists
-  const emptyMessage = dealsContainer.querySelector('.empty-stage');
-  if (emptyMessage) {
-    dealsContainer.innerHTML = '';
-  }
-  
-  // Add deal card to stage
-  dealsContainer.insertAdjacentHTML('beforeend', createDealCardHTML(deal));
-  
-  // Update stage stats
+  dealsContainer.insertAdjacentHTML('beforeend', createDealCardHTML(deal));   // 'beforeend' means it will be inserted as the last child of the container
+
   updateStageStats(deal.stage);
   
-  // Add event listeners to the new deal card
   addDealCardEventListeners();
 };
 
-// Update stage statistics
+
 const updateStageStats = (stageId) => {
+  
   const stage = stageMap[stageId].element;
-  if (!stage) return; // Skip if stage element doesn't exist
+  if (!stage) return; 
   
   const deals = stage.querySelectorAll('.deal-card');
   const amountElement = stage.querySelector('.stage-amount');
   const countElement = stage.querySelector('.stage-count');
   
-  // Calculate total amount
   let totalAmount = 0;
   deals.forEach(deal => {
     const amountText = deal.querySelector('.deal-amount').textContent;
@@ -104,20 +95,18 @@ const updateStageStats = (stageId) => {
     totalAmount += isNaN(amount) ? 0 : amount;
   });
   
-  // Update stats
   amountElement.textContent = formatCurrency(totalAmount);
   countElement.textContent = `${deals.length} Deal${deals.length !== 1 ? 's' : ''}`;
   
 };
 
-// Add event listeners to deal cards
 const addDealCardEventListeners = () => {
   
   
   // Make cards draggable
   document.querySelectorAll('.deal-card').forEach(card => {
     card.addEventListener('dragstart', (e) => {
-      e.dataTransfer.setData('text/plain', card.getAttribute('data-deal-id'));
+      e.dataTransfer.setData('text/plain', card.getAttribute('data-deal-id'));   // dataTransfer is an object that holds data being dragged
       setTimeout(() => {
         card.classList.add('dragging');
       }, 0);
@@ -147,8 +136,8 @@ const setupDragAndDrop = () => {
       
       const dealId = e.dataTransfer.getData('text/plain');
       const dealCard = document.querySelector(`[data-deal-id="${dealId}"]`);
-      const sourceStage = dealCard.closest('.stage');
-      const targetStage = stage;
+      const sourceStage = dealCard.closest('.stage');           // Finds the stage that the deal card was dragged from
+      const targetStage = stage;               // stage where deal card drops to
       
       if (sourceStage !== targetStage) {
         const dealsContainer = targetStage.querySelector('.stage-deals');
@@ -156,7 +145,9 @@ const setupDragAndDrop = () => {
         
         // Update deal in database
         const newStage = targetStage.getAttribute('data-stage');
+  
         updateDealStage(dealId, newStage);
+
         
         // Update stats for both stages
         updateStageStats(sourceStage.getAttribute('data-stage'));
@@ -168,15 +159,36 @@ const setupDragAndDrop = () => {
 
 // Update deal stage in database
 const updateDealStage = (dealId, newStage) => {
-  // Now using the deals table structure
-  axios.patch(`${API_URL}deals/${dealId}.json`, { stage: newStage })
+  // Create a new stage history entry     object 
+  const stageChange = { 
+    stage: newStage,
+    timestamp: Date.now(),
+    time: new Date().toLocaleTimeString('en-US', { 
+      hour: '2-digit', 
+      minute: '2-digit', 
+      hour12: true
+  })
+};
+ 
+
+  axios.get(`${API_URL}deals/${dealId}.json`)
     .then(response => {
-      console.log('Deal stage updated:', response.data);
+      const dealData = response.data;
+      const currentStageHistory = dealData.stageHistory || [];
+      
+      return axios.patch(`${API_URL}deals/${dealId}.json`, { 
+        stage: newStage,
+        stageHistory: [...currentStageHistory, stageChange]
+      });
+    })
+    .then(response => {
+      console.log('Deal stage updated with history:', response.data);
     })
     .catch(error => {
       console.error('Error updating deal stage:', error);
     });
 };
+
 
 // Fetch deals from API
 const fetchDeals = () => {
@@ -187,7 +199,7 @@ const fetchDeals = () => {
       // Clear existing deals
       document.querySelectorAll('.stage-deals').forEach(container => {
         // Reset to empty state
-        container.innerHTML = '<div class="empty-stage">This stage is empty</div>';
+        
       });
       
       if (dealsData) {
@@ -239,7 +251,7 @@ const initDatePicker = () => {
   });
 };
 
-// Event Listeners
+
 // Open deal modal
 addDealButtons.forEach(btn => {
   btn.addEventListener('click', () => {
@@ -273,8 +285,8 @@ cancelButtons.forEach(btn => {
   });
 });
 
-// Submit deal form
-// Submit deal form
+
+
 dealForm.addEventListener('submit', (e) => {
   e.preventDefault();
   
@@ -283,15 +295,15 @@ dealForm.addEventListener('submit', (e) => {
   const dealData = {
     dealName: formData.get('dealName'),
     companyName: formData.get('companyName'),
-    companyPhoneNumber: formData.get('companyPhnNumber'),  // Add company phone
+    companyPhoneNumber: formData.get('companyPhnNumber'),  
     contactName: formData.get('contactName'),
-    contactPhoneNumber: formData.get('contactPhnNumber'),  // Add contact phone
-    contactEmail: formData.get('contactEmail'),            // Add contact email
+    contactPhoneNumber: formData.get('contactPhnNumber'),  
+    contactEmail: formData.get('contactEmail'),            
     stage: formData.get('stage'),
     amount: parseFloat(formData.get('amount')),
     closingDate: formData.get('closingDate'),
     description: formData.get('description'),
-    owner: 'Abhiram M Prasad', // Default owner
+    owner: 'Abhiram M Prasad', 
     createdAt: new Date().toISOString(),
     timestamp: Date.now(),
     timeCreated: new Date().toLocaleTimeString('en-US', {
@@ -299,18 +311,26 @@ dealForm.addEventListener('submit', (e) => {
       minute: '2-digit',
       hour12: true
     }),
+    stageHistory: [{    
+      stage: formData.get('stage'),    
+      timestamp: Date.now(),    
+      time: new Date().toLocaleTimeString('en-US', {      
+        hour: '2-digit',      
+        minute: '2-digit',      
+        hour12: true    })  
+    }]
   };
   
   axios.post(DEALS_ENDPOINT, dealData)
     .then(response => {
       console.log('Deal created:', response.data);
       
-      // Get the deal ID from the response
+     
       const dealId = response.data.name;
       
       addDealToStage({...dealData, id: dealId});
       
-      // Close modal
+     
       hideModal(dealModal);
     })
     .catch(error => {
@@ -328,15 +348,11 @@ window.addEventListener('click', (e) => {
   }
 });
 
-// Initialize
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Fetch deals from API
+  
   fetchDeals();
-  
-  // Initialize date picker
   initDatePicker();
-  
-  // Add event listeners to existing deal cards
   addDealCardEventListeners();
 });
 
