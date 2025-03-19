@@ -1,91 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deal Details</title>
-    <link rel="stylesheet" href="details.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-   <script src="lead.js"></script>
-</head>
-<body>
-    <header class="top-nav">
-    </header>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+         <link rel="stylesheet" href="details.css">
+        <title>Deal Details</title>
+        <script src="lead.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <link rel="stylesheet" href="styles.css">
 
-    <div class="main-content">
-        <div class="sidebar">
-      
-        </div>
-
-        <div class="deal-body">
-            <div class="status">
-         
-                <div class="description">
-                    <div class="project-section">
-                        <a href="index.html"><span class="arrow"><i class="fa-solid fa-arrow-left" ></i></a>
-                        </i></span>
-                        <span class="project-name">Zyler </span>
-                        <span class="mx-2">•</span>
-                        <span class="money">$23,000</span>
-
-                    </div>
-                    <div class="contact-name">
-                       <span class="crown"><i class="fa-solid fa-crown" ></i></span>
-                        <span class="name mx-2">Sagar</span>
-                        
-                    </div>
-                    <div class="pipeline">
-                        <span class="mx-2">Sub-Pipeline: </span><span> Sales Pipeline Standard</span>
-                        <span class="mx-2">•</span>
-                        <span class="mx-2">Closing Date: </span><span> Mar 19, 2025</span>
-                    </div>
+    </head>
+    <body>
+        <!-- Top navigation bar -->
+        <header class="top-nav">
+            <div class="left-section">
+                <div class="logo">
+                    <i class="fas fa-filter"></i>
+                    <span>Bigin</span>
                 </div>
-                <div class="status-timeline">
-                   
-                    <div class="progress-container">
-                        <div class="progress-steps">
-                            <div class="step active">
-                                <div class="circle">1</div>
-                                <div class="step-text">Qualification</div>
+       
+                <div class="dropdown">
+                    <button class="dropdown-btn">All <i class="fas fa-chevron-down"></i></button>
+                </div>
+ 
+                <div class="search-container">
+                    <input type="text" placeholder="Search (ctrl + k)" />
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+            <div class="right-section">
+                <button class="add-btn"><i class="fas fa-plus"></i></button>
+                <button class="icon-btn"><i class="far fa-clipboard"></i></button>
+                <button class="icon-btn"><i class="far fa-bell"></i></button>
+                <button class="icon-btn"><i class="fas fa-question-circle"></i></button>
+                <button class="icon-btn"><i class="fas fa-cog"></i></button>
+                <div class="user-avatar">
+                    <img src="/Ui_Eval/images/profile.jpeg" alt="User Avatar" />
+                </div>
+            </div>
+        </header>
+ 
+        <!-- Main Container Area -->
+        <div class="main-container">
+ 
+            <!-- Left side bar -->
+            <aside class="sidebar">
+                <div class="sidebar-item active">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Pipelines</span>
+                </div>
+                <div class="sidebar-item">
+                    <i class="fas fa-user"></i>
+                    <span>Contacts</span>
+                </div>
+                <div class="sidebar-item">
+                    <i class="fas fa-building"></i>
+                    <span>Companies</span>
+                </div>
+                <div class="sidebar-item">
+                    <i class="fas fa-box"></i>
+                    <span>Products</span>
+                </div>
+                <div class="sidebar-item">
+                    <i class="fas fa-tasks"></i>
+                    <span>Activities</span>
+                </div>
+                <div class="sidebar-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </div>
+            </aside>
+ 
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <div class="deal-body">
+                    <div class="status">
+                        <div class="description">
+                            <div class="project-section">
+                                <a href="index.html"><span class="arrow"><i class="fa-solid fa-arrow-left"></i></span></a>
+                                <span class="project-name">Zyler</span>
+                                <span class="mx-2">•</span>
+                                <span class="money">$23,000</span>
                             </div>
-                            <div class="step">
-                                <div class="circle">2</div>
-                                <div class="step-text">Needs Analysis</div>
+                            <div class="contact-name">
+                                <span class="crown"><i class="fa-solid fa-crown"></i></span>
+                                <span class="name mx-2">Sagar</span>
                             </div>
-                            <div class="step">
-                                <div class="circle">3</div>
-                                <div class="step-text">Proposal/Price Quote</div>
+                            <div class="pipeline">
+                                
+                                <span class="mx-2">•</span>
+                                <span class="mx-2">Closing Date: </span><span>Mar 19, 2025</span>
                             </div>
-                            <div class="step">
-                                <div class="circle">4</div>
-                                <div class="step-text">Negotiation/Review</div>
+                        </div>
+                        <div class="status-timeline">
+                            <div class="progress-container">
+                                <div class="progress-steps">
+                                    <div class="step active">
+                                        <div class="circle">1</div>
+                                        <div class="step-text">Qualification</div>
+                                    </div>
+                                    <div class="step">
+                                        <div class="circle">2</div>
+                                        <div class="step-text">Needs Analysis</div>
+                                    </div>
+                                    <div class="step">
+                                        <div class="circle">3</div>
+                                        <div class="step-text">Proposal/Price Quote</div>
+                                    </div>
+                                    <div class="step">
+                                        <div class="circle">4</div>
+                                        <div class="step-text">Negotiation/Review</div>
+                                    </div>
+                                    <div class="step closed-won">
+                                        <div class="circle">5</div>
+                                        <div class="step-text">Closed Won</div>
+                                    </div>
+                                    <div class="step closed-lost">
+                                        <div class="circle">6</div>
+                                        <div class="step-text">Closed Lost</div>
+                                    </div>
+                                    <div class="progress-line"></div>
+                                </div>
                             </div>
-                            <div class="step closed-won">
-                                <div class="circle">5</div>
-                                <div class="step-text">Closed Won</div>
-                            </div>
-                            <div class="step closed-lost">
-                                <div class="circle">6</div>
-                                <div class="step-text">Closed Lost</div>
-                            </div>
-                            <div class="progress-line"></div>
                         </div>
                     </div>
-                
-
-                </div>
-
-            </div>
-            <div class="bottom-container">
-                <div class="related-info">
-          
-                </div>
-                <div class="timeline">
-                   
+                    <div class="bottom-container">
+                       
+                        <div id="contactinfo" class="contact-info">
+                            <Section class="space" title="Related Contact">
+                                Related Contact
+                            </Section>
+                            <div>
+                                <span class="icons">
+                                    <i class="fa-solid fa-user"></i>
+                                    <span class="icon" id="contactname"></span>
+                            </div>
+                            <div>
+                                <span class="icons">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </span>
+                                <span class="icon" id="contactemail"></span>
+                            </div>
+                            <div> <span class="icons"> <i class="fa-solid fa-mobile"></i>
+   
+                                </span><span class="icon" id="contactnumber"> </span></div>
+                                <div class="related-company">
+                                    <h3>Related Company</h3>
+                                    <div class="company-info">
+                                        <div class="company-name">
+                                            <span class="company-initials"></span>
+                                            <span class="company-full-name"></span>
+                                        </div>
+                                        <div class="company-details">
+                                            <div class="company-details-link">
+                                                <i class="company-website-icon"></i>
+                                                <a href="#" class="company-website-link" target="_blank"></a>
+                                            </div>
+                                            <div class="company-details-phone">
+                                                <i class="company-phone-icon"></i>
+                                                <p class="company-phone-number"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+   
+                                    <div class="tags">
+                                        <h4>Tags</h4>
+                                        <div class="tag-list">
+   
+                                            <button class="add-tag">+</button>
+                                        </div>
+                                    </div>
+   
+                                    <div class="description-info">
+                                        <h4>Description</h4>
+                                        <div class="description-content">
+                                            <textarea id="description-text" rows="4" cols="50" readonly>
+                                        </textarea>
+                                            <button class="edit-button"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="save-button" style="display: none;">✔</button>
+                                            <button class="cancel-button" style="display: none;">✖</button>
+                                        </div>
+                                    </div>
+   
+                                    <div class="last-modified">
+                                        <p>Last Modified on <span id="modified-date"></span> by <span
+                                                id="modified-user"></span></p>
+                                    </div>
+                                </div>
+                        </div>
+ 
+                        <div class="timeline">
+                            <div class="timeline-container">
+                                <h3>History</h3>
+                                <div class="timeline" id="timeline">
+                                    <div class="timeline-header">
+                                        <div class="header-icon"></div>
+                                        <span>Today</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
-    </div>
-</body>
+       
+    </body>
 </html>
+ 
