@@ -1,17 +1,32 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-  }
-  
-  
-    $primary-color: #3b82f6;
+@use "sass:color";
+    $blue-color: #3b82f6;
     $inactive-color: #e5e7eb;
-    $text-color: #6b7280;
+    $text-inactive-color: #6b7280;
     $red-color: #f87171; 
     $green-color:  #4caf50;  
-  
+    $primary-color: blue;
+    $icon-color: green;
+    $icons-color: brown;
+    $company-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    $text-color: #333;
+    $link-color: #0056b3;
+    $tag-bg-color: #fffdfd;
+    $add-tag-bg-color: #e0e0e0;
+    $description-border-color: #28a745;
+    $last-modified-color: #666;
+    $container-bg: #f0e9e9;
+    $timeline-line-color: rgba(0, 0, 0, 0.8);
+    $icon-border-color: #ccc;
+    $header-icon-color: #4CAF50;
+    $text-color-timeline: #333;
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family:$company-font-family;
+    }
+      
   
   .description {
     padding: 30px;
@@ -41,7 +56,7 @@
   }
   
   .mx-2 {
-    color: $text-color;
+    color: $text-inactive-color;
   }
   
   .pipeline {
@@ -91,27 +106,27 @@
         align-items: center;
         justify-content: center;
         margin: 0 auto;
-        color: $text-color;
+        color: $text-inactive-color;
         font-weight: 500;
         transition: all 0.3s ease;
       }
   
       .step-text {
         margin-top: 8px;
-        color: $text-color;
+        color: $text-inactive-color;
         font-size: 14px;
         font-weight: 500;
       }
   
       &.active {
         .circle {
-          border-color: $primary-color;
-          background-color: $primary-color;
+          border-color: $blue-color;
+          background-color: $blue-color;
           color: white;
         }
   
         .step-text {
-          color: $primary-color;
+          color: $blue-color;
         }
       }
   
@@ -151,11 +166,11 @@
         .circle {
           border-color: $inactive-color; /* Inactive border for closed lost initially */
           background-color: $inactive-color; /* Inactive background for closed lost initially */
-          color: $text-color; /* Default text color */
+          color: $text-inactive-color; /* Default text color */
         }
   
         .step-text {
-          color: $text-color; /* Default text color */
+          color: $text-inactive-color; /* Default text color */
         }
       }
   
@@ -163,13 +178,428 @@
         .circle {
           border-color: $inactive-color; /* Inactive border for closed won initially */
           background-color:$inactive-color; /* Inactive background for closed won initially */
-          color: $text-color; /* Default text color */
+          color: $text-inactive-color; /* Default text color */
         }
   
         .step-text {
-          color: $text-color; /* Default text color */
+          color: $text-inactive-color; /* Default text color */
         }
       }
     }
+
+//Hari & Meera
   
-  
+
+
+
+// Mixins
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Contact Info Styles
+.icon {
+    color: $icon-color;
+    font-style: italic;
+}
+
+.icons {
+    color: $icons-color;
+}
+
+.space {
+    border-width: 0cqmax;
+    text-indent: 50px;
+    line-height: 1.8;
+}
+
+.contact-info {
+    color: $primary-color;
+    font-size: medium;
+    width: 350px; 
+    padding: 10px;
+    margin-left: 30px;
+    padding-left: 70px;
+    line-height: 1.8;
+    word-spacing: 10px;
+    white-space: nowrap;
+    border-bottom: none;
+}
+
+.related-info-bottom {
+    width: 350px;
+}
+
+.related-company {
+    font-family: $company-font-family;
+    color: $text-color;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    max-width: 350px;
+
+    h3 {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .company-info {
+        margin-bottom: 20px;
+    }
+
+    .company-name {
+        display: flex;
+        align-items: center;
+        font-size: 10px;
+        margin-bottom: 10px;
+    }
+
+    .company-initials {
+        background-color: #ccffce;
+        color: #0e0e0f;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        @include flex-center;
+        font-size: 12px;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    .company-full-name {
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .company-details {
+        &-link, 
+        &-phone {
+            display: flex;
+            font-size: 13px;
+            gap: 10px;
+        }
+
+        a {
+            color: $link-color;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+
+    .tags {
+        margin-bottom: 30px;
+
+        h4 {
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        &-list {
+            display: flex;
+            align-items: center;
+        }
+
+        .tag-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tag {
+            background-color: $tag-bg-color;
+            color: $text-color;
+            font-size: 12px;
+            padding: 2px 7px;
+            border-radius: 15px;
+            margin-right: 5px;
+            border: 1px solid;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .add-tag {
+            background-color: $add-tag-bg-color;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            @include flex-center;
+            cursor: pointer;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+    }
+
+    .description {
+        position: relative;
+        margin-bottom: 20px;
+
+        h4 {
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        &-content {
+            position: relative;
+        }
+
+        textarea {
+            width: 75%;
+            border: 1px solid $description-border-color;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 14px;
+            resize: vertical;
+            outline: none;
+            box-shadow: none;
+
+            &:focus {
+                border-color: $description-border-color;
+                box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+            }
+        }
+
+        .edit-button {
+            position: absolute;
+            z-index: 10;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .save-button,
+        .cancel-button {
+            position: absolute;
+            z-index: 10;
+            top: 20px;
+            background-color: #28a745;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            @include flex-center;
+            color: #fff;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .cancel-button {
+            background-color: #dc3545;
+            right: 10px;
+        }
+    }
+
+    .last-modified {
+        font-size: 14px;
+        color: $last-modified-color;
+
+        #modified-user {
+            font-weight: bold;
+        }
+    }
+}
+
+//Sagar
+ 
+
+
+ 
+.timeline-container {
+    max-width: 650px;
+    margin: 20px auto;
+    padding: 20px;
+    background: $container-bg;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+   
+    h3 {
+        font-family:  $company-font-family;
+        margin-bottom: 15px;
+        font-size: 20px;
+        color: $text-color-timeline;
+    }
+}
+ 
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+    padding-left: 20px;
+    max-height: 350px;
+    overflow-y: auto;
+    padding-right: 10px;
+   
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+   
+    &::-webkit-scrollbar-track {
+        background: color.adjust($container-bg, $lightness: 5%);
+        border-radius: 10px;
+    }
+   
+    &::-webkit-scrollbar-thumb {
+        background: color.adjust($container-bg, $lightness: -15%);
+        border-radius: 10px;
+    }
+   
+    &::-webkit-scrollbar-thumb:hover {
+        background: color.adjust($container-bg, $lightness: -25%);
+        border-radius: 10px;
+    }
+}
+ 
+.timeline-header {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: $text-color-timeline;
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    position: sticky;
+    top: 0;
+    background: $container-bg;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    z-index: 2;
+   
+    .header-icon {
+        width: 12px;
+        height: 12px;
+        background-color: $header-icon-color;
+        border-radius: 50%;
+        margin-right: 10px;
+        margin-left: 25px;
+    }
+   
+    span {
+        font-family:  $company-font-family;
+    }
+}
+ 
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    position: relative;
+    margin-bottom: 5px;
+   
+    .time {
+        width: 80px;
+        font-size: 13px;
+        font-weight: 500;
+        color: $text-color-timeline;
+        opacity: 0.8;
+        padding-top: 2px;
+        font-family:  $company-font-family;
+        text-align: right;
+        padding-right: 10px;
+        flex-shrink: 0;
+    }
+   
+    .dot-line {
+        position: relative;
+        min-height: 60px;
+       
+        &::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 12px;
+            bottom: -20px;
+            width: 2px;
+            background: $timeline-line-color;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+    }
+   
+    .timeline-icon {
+        width: 12px;
+        height: 12px;
+        background-color: #fff;
+        border: 2px solid $icon-border-color;
+        border-radius: 50%;
+        position: relative;
+        z-index: 1;
+       
+        &:hover {
+            transform: scale(1.2);
+            transition: transform 0.2s ease;
+        }
+    }
+   
+    .timeline-content {
+        padding: 8px 12px;
+        border-radius: 5px;
+        font-size: 14px;
+        justify-content: top;
+        font-family:  $company-font-family;
+        flex: 1;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        min-width: 0;
+       
+        &:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transition: background 0.3s ease;
+        }
+       
+        p {
+            margin: 0;
+            line-height: 1.5;
+            white-space: normal;
+            overflow: visible;
+            text-overflow: ellipsis;
+            max-width: 100%;
+           
+            strong {
+                color: color.adjust($text-color-timeline, $lightness: -10%);
+            }
+           
+            &:last-child {
+                opacity: 0.8;
+                font-size: 13px;
+            }
+        }
+    }
+}
+ 
+.timeline-item:last-child {
+    .dot-line::before {
+        display: none !important;
+    }
+}
+ 
+@media (max-width: 500px) {
+    .timeline-container {
+        margin: 10px;
+        padding: 15px;
+    }
+   
+    .timeline-item {
+        .time {
+            width: 60px;
+            font-size: 12px;
+        }
+    }
+   
+    .timeline-header {
+        padding-left: 5px;
+       
+        .header-icon {
+            margin-left: 100px;
+        }
+    }
+}
+ 
